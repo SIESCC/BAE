@@ -1,0 +1,83 @@
+Prac 5 - Parent and Child Component in React
+
+Code:-
+
+src/App.jsx (Parent Component)
+
+import Child from "./Child";
+import "./App.css";
+
+function App() {
+  const studentName = "Nithyashree";
+  const course = "React Basics";
+
+  return (
+    <div className="app">
+      <div className="parent-card">
+        <h1>Parent Component</h1>
+        <p>This is the parent component.</p>
+
+        <div className="info-box">
+          <p><strong>Name:</strong> {studentName}</p>
+          <p><strong>Course:</strong> {course}</p>
+        </div>
+
+        <Child name={studentName} subject={course} />
+      </div>
+    </div>
+  );
+}
+
+export default App;
+============================================================================
+src/Child.jsx (Child Component)
+
+function Child(props) {
+  return (
+    <div className="child-card">
+      <h2>Child Component</h2>
+      <p>Hello, <strong>{props.name}</strong> 👋</p>
+      <p>Welcome to <strong>{props.subject}</strong></p>
+    </div>
+  );
+}
+
+export default Child;
+================================================================================
+src/App.css
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.parent-card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
+  margin: auto;
+}
+
+.child-card {
+  border: 1px solid #999;
+  padding: 15px;
+  margin-top: 15px;
+}
+================================================================================
+- src/main.jsx
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./App.css";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);

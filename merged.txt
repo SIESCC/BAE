@@ -1,0 +1,1053 @@
+Prac 10 - MongoDB CRUD Operations 
+
+show dbs (Shows all the present databases) 
+Output: - 
+  
+ Query: - 
+use pract10  (Creates a new database named pract10 and uses it) 
+Output: - 
+  
+1) Inserting 10 records of students document  
+Query: -
+student1 = {Name: "stud1", Gender:"M", Class:"C1", Age: 28, Subject:"AWT"}
+student2 = {Name: "stud2", Gender:"F", Class:"C3", Age: 30, Subject:"DV"}
+student3 = {Name: "stud3", Gender:"F", Class:"C2", Age: 27, Subject:"AWT"}
+student4 = {Name: "stud4", Gender:"F", Class:"C1", Age: 24, Subject:"DV"}
+student5 = {Name: "stud5", Gender:"M", Class:"C2", Age: 21, Subject:"AWT"}
+student6 = {Name: "stud6", Gender:"F", Class:"C3", Age: 30, Subject:"NLP"}
+student7 = {Name: "stud7", Gender:"M", Class:"C1", Age: 25, Subject:"AWT"}
+student8 = {Name: "stud8", Gender:"F", Class:"C2", Age: 22, Subject:"NLP"}
+student9 = {Name: "stud9", Gender:"F", Class:"C3", Age: 26, Subject:"AWT"}
+student10 = {Name: "stud10", Gender:"M", Class:"C1", Age: 23, Subject:"NLP"}
+db.students.insertMany([
+  student1,
+  student2,
+  student3,
+  student4,
+  student5,
+  student6,
+  student7,
+  student8,
+  student9,
+  student10
+])
+ 
+ 
+2) Creating the teachers collection and inserting 10 records of students document in it 
+Query: - 
+db.teachers.insertMany([student1, student2, student3, student4, student5, student6, student7, student8, student9, student10]); 
+Output: -
+ 
+Query: - 
+db.teachers.find()
+
+
+3) Displaying the 10 records of students document and sorting the records in ascending order by age 
+Query:-
+db.teachers.find().sort({"Age":1});
+ 
+
+Prac 9 - MongoDB CRUD Operations 
+
+show dbs (Shows all the present databases) 
+Output: - 
+ 
+ Query: - 
+use pract9 (Creates a new database named pract9 and uses it) 
+
+
+Output: -
+ 
+1) Creating a users collection and inserting 10 records of user documents  
+Query: -
+db.users.insertMany([
+  { id: 1, name: 'Ryan',   gender: 'M', country: 'India' },
+  { id: 2, name: 'Joanna', gender: 'F', country: 'India' },
+  { id: 3, name: 'Saad',   gender: 'M', country: 'US' },
+  { id: 4, name: 'Kiran',  gender: 'F', country: 'India' },
+  { id: 5, name: 'Sherin', gender: 'F', country: 'US' },
+  { id: 6, name: 'Mugli',  gender: 'F', country: 'India' },
+  { id: 7, name: 'Riya',   gender: 'F', country: 'India' },
+  { id: 8, name: 'Sunil',  gender: 'M', country: 'India' },
+  { id: 9, name: 'Neha',   gender: 'F', country: 'India' },
+  { id: 10, name: 'Sunita', gender: 'F', country: 'US' }
+]);
+ 
+2) Finding out the count of female user who stays in India.  
+Query: - 
+db.users.find({"gender":"F", $or:[{"country":"India"}]}).count(); 
+Output: -
+ 
+3) Displaying all the documents in users collection with the help of (find) command. 
+Query: - 
+db.users.find();
+
+Prac 8 - Routing in React
+
+
+npm install react-router-dom
+
+Code:-
+
+src/main.jsx
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./App.css";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+===========================================================================
+src/App.jsx
+
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import "./App.css";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <div className="app">
+        <nav className="navbar">
+          <h2>React Routing</h2>
+          <div>
+            <Link to="/">Home</Link> |{" "}
+            <Link to="/about">About</Link> |{" "}
+            <Link to="/contact">Contact</Link>
+          </div>
+        </nav>
+
+        <div className="page-container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </div>
+      </div>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+========================================================================
+src/pages/Home.jsx
+
+function Home() {
+  return (
+    <div className="page-card">
+      <h1>🏠 Home Page</h1>
+      <p>Welcome to the Home page of the React Routing application.</p>
+    </div>
+  );
+}
+
+export default Home;
+===============================================================
+src/pages/About.jsx
+
+function About() {
+  return (
+    <div className="page-card">
+      <h1>ℹ️ About Page</h1>
+      <p>This page explains the concept of routing in React.</p>
+    </div>
+  );
+}
+
+export default About;
+======================================================
+src/pages/Contact.jsx
+
+function Contact() {
+  return (
+    <div className="page-card">
+      <h1>📞 Contact Page</h1>
+      <p>You can contact us at reactdemo@gmail.com</p>
+    </div>
+  );
+}
+
+export default Contact;
+=================================================================
+src/App.css
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+
+.navbar a {
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.page-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.page-card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
+  margin: auto;
+}
+Prac 7 - Styling in React with CSS classes
+
+Code:-
+
+src/App.jsx
+
+import TicketCard from "./TicketCard";
+import "./App.css";
+
+function App() {
+  return (
+    <div className="app">
+      <h1 className="title">🎵 Live Concert Tickets</h1>
+
+      <div className="ticket-container">
+        <TicketCard
+          artist="Shreya Ghoshal"
+          image="https://cdn.starclinch.in/blogs/uploads/2025/07/01/merry-christmas-you-all-arindam_duttas_photography-styled-by-stylebysaachivj-outfit-aliyanabymeenabazaarjewellery-azotiique-style-team-anshudixit__nehha_o.jpg"
+          event="Melody Night 2026"
+          date="15 April 2026"
+          venue="Mumbai Arena"
+          price="₹2999"
+        />
+
+        <TicketCard
+          artist="Sunidhi Chauhan"
+          image="https://gigx.blob.core.windows.net/gigx-container/uploads/articleheaderimage/69beb577a4e3c.jpg"
+          event="Power Beats Live"
+          date="28 May 2026"
+          venue="Delhi Stadium"
+          price="₹3499"
+        />
+
+        <TicketCard
+          artist="Arijit Singh"
+          image="https://www.tottenhamhotspurstadium.com/media/xrhfsdgm/2v8a4968.jpg?width=960&height=582&format=webp&quality=80&rnd=133898957726470000"
+          event="Soulful Evening"
+          date="10 June 2026"
+          venue="Bangalore Grounds"
+          price="₹3999"
+        />
+      </div>
+    </div>
+  );
+}
+
+export default App;
+=================================================================
+src/TicketCard.jsx
+
+function TicketCard(props) {
+  return (
+    <div className="ticket-card">
+      <img src={props.image} alt={props.artist} className="artist-image" />
+
+      <div className="ticket-content">
+        <h2 className="artist-name">{props.artist}</h2>
+        <p className="event-name">🎤 {props.event}</p>
+        <p className="info">📅 {props.date}</p>
+        <p className="info">📍 {props.venue}</p>
+        <p className="price">🎟 {props.price}</p>
+        <button className="book-btn">Book Now</button>
+      </div>
+    </div>
+  );
+}
+
+export default TicketCard;
+==================================================================================
+src/App.css
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.ticket-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.ticket-card {
+  border: 1px solid #ccc;
+  width: 250px;
+  padding: 10px;
+}
+
+.artist-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+button {
+  margin-top: 10px;
+  padding: 8px;
+}====================================================
+src/main.jsx
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./App.css";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+Prac 6 - Functional Component in React
+
+Code:-
+
+src/App.jsx
+mport "./App.css";
+import { useState } from "react";
+
+function Header() {
+  return <h1>Functional Component</h1>;
+}
+
+function Message({ text }) {
+  return <p>{text}</p>;
+}
+
+function Button({ handleClick }) {
+  return <button onClick={handleClick}>Click Me</button>;
+}
+
+function App() {
+  const [message, setMessage] = useState(
+    "This is created using a functional component in React."
+  );
+
+  const handleClick = () => {
+    setMessage("Button Clicked! 🎉");
+  };
+
+  return (
+    <div className="app">
+      <div className="card">
+        <Header />
+        <Message text={message} />
+        <Button handleClick={handleClick} />
+      </div>
+    </div>
+  );
+}
+
+export default App;
+=================================================================
+src/App.css
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
+  margin: auto;
+}
+
+button {
+  padding: 8px 12px;
+  margin-top: 10px;
+}
+
+
+=================================================================
+src/main.jsx
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./App.css";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+Prac 5 - Parent and Child Component in React
+
+Code:-
+
+src/App.jsx (Parent Component)
+
+import Child from "./Child";
+import "./App.css";
+
+function App() {
+  const studentName = "Nithyashree";
+  const course = "React Basics";
+
+  return (
+    <div className="app">
+      <div className="parent-card">
+        <h1>Parent Component</h1>
+        <p>This is the parent component.</p>
+
+        <div className="info-box">
+          <p><strong>Name:</strong> {studentName}</p>
+          <p><strong>Course:</strong> {course}</p>
+        </div>
+
+        <Child name={studentName} subject={course} />
+      </div>
+    </div>
+  );
+}
+
+export default App;
+============================================================================
+src/Child.jsx (Child Component)
+
+function Child(props) {
+  return (
+    <div className="child-card">
+      <h2>Child Component</h2>
+      <p>Hello, <strong>{props.name}</strong> 👋</p>
+      <p>Welcome to <strong>{props.subject}</strong></p>
+    </div>
+  );
+}
+
+export default Child;
+================================================================================
+src/App.css
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.parent-card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
+  margin: auto;
+}
+
+.child-card {
+  border: 1px solid #999;
+  padding: 15px;
+  margin-top: 15px;
+}
+================================================================================
+- src/main.jsx
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./App.css";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+prac4-AngularJS Validations and Custom Validations
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>AngularJS Custom Validation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .form-box {
+            width: 380px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        h2 {
+            text-align: center;
+            color: black;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #999;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        button {
+            width: 100%;
+            padding: 8px;
+            background-color: gray;
+            color: white;
+            border: none;
+        }
+
+        button:hover {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body ng-controller="myCtrl">
+
+<div class="form-box">
+
+    <h2>Student Registration</h2>
+
+    <form name="myForm" ng-submit="submitForm()" novalidate>
+
+        <!-- Full Name -->
+        <input type="text" name="fullname" ng-model="formData.fullname"
+               placeholder="Enter Full Name"
+               required has-vowel>
+
+        <span class="error"
+              ng-show="myForm.fullname.$touched && myForm.fullname.$error.required">
+            Name is required
+        </span>
+
+        <span class="error"
+              ng-show="myForm.fullname.$touched && myForm.fullname.$error.vowel">
+            Name must contain at least one vowel
+        </span>
+
+        <!-- Email -->
+        <input type="email" name="email" ng-model="formData.email"
+               placeholder="Enter Email" required>
+
+        <span class="error"
+              ng-show="myForm.email.$touched && myForm.email.$invalid">
+            Enter valid email
+        </span>
+
+        <!-- Password -->
+        <input type="password" name="password" ng-model="formData.password"
+               placeholder="Enter Password"
+               required strong-password>
+
+        <span class="error"
+              ng-show="myForm.password.$touched && myForm.password.$error.required">
+            Password is required
+        </span>
+
+        <span class="error"
+              ng-show="myForm.password.$touched && myForm.password.$error.strong">
+            Password must contain letter + number
+        </span>
+
+        <!-- Submit -->
+        <button type="submit">Submit</button>
+
+    </form>
+
+</div>
+
+<script>
+var app = angular.module("myApp", []);
+
+app.directive('hasVowel', function(){
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attrs, ctrl){
+            ctrl.$parsers.push(function(value){
+                if(/[aeiouAEIOU]/.test(value)){
+                    ctrl.$setValidity('vowel', true);
+                } else {
+                    ctrl.$setValidity('vowel', false);
+                }
+                return value;
+            });
+        }
+    };
+});
+
+app.directive('strongPassword', function(){
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attrs, ctrl){
+            ctrl.$parsers.push(function(value){
+                if(/^(?=.*[A-Za-z])(?=.*\d).+$/.test(value)){
+                    ctrl.$setValidity('strong', true);
+                } else {
+                    ctrl.$setValidity('strong', false);
+                }
+                return value;
+            });
+        }
+    };
+});
+
+app.controller("myCtrl", function($scope){
+    $scope.submitForm = function(){
+        if($scope.myForm.$valid){
+            alert("Form submitted successfully!");
+        } else {
+            alert("Please fix validation errors!");
+        }
+    };
+});
+</script>
+
+</body>
+</html>
+prac3- AngularJS Validations
+
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>AngularJS Form Validation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .form-box {
+            width: 350px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        h2 {
+            text-align: center;
+            color: black;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #999;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        button {
+            width: 100%;
+            padding: 8px;
+            background-color: gray;
+            color: white;
+            border: none;
+        }
+
+        button:hover {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body ng-controller="formController">
+
+<div class="form-box">
+
+    <h2>Student Form</h2>
+
+    <form name="studentForm" novalidate ng-submit="submitForm(studentForm.$valid)">
+
+        <!-- Name -->
+        <input type="text" name="name" ng-model="student.name"
+               placeholder="Enter Name"
+               required ng-pattern="/^[a-zA-Z ]+$/">
+
+        <span class="error"
+              ng-show="studentForm.name.$touched && studentForm.name.$invalid">
+            Enter valid name
+        </span>
+
+        <!-- Email -->
+        <input type="email" name="email" ng-model="student.email"
+               placeholder="Enter Email"
+               required>
+
+        <span class="error"
+              ng-show="studentForm.email.$touched && studentForm.email.$invalid">
+            Enter valid email
+        </span>
+
+        <!-- Phone -->
+        <input type="text" name="phone" ng-model="student.phone"
+               placeholder="Enter Phone"
+               required ng-pattern="/^[0-9]{10}$/">
+
+        <span class="error"
+              ng-show="studentForm.phone.$touched && studentForm.phone.$invalid">
+            Enter valid 10-digit number
+        </span>
+
+        <!-- Gender -->
+        <select name="gender" ng-model="student.gender" required>
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+        </select>
+
+        <span class="error"
+              ng-show="studentForm.gender.$touched && studentForm.gender.$invalid">
+            Gender is required
+        </span>
+
+        <!-- Submit -->
+        <button type="submit">Submit</button>
+
+    </form>
+
+</div>
+
+<script>
+    var app = angular.module("myApp", []);
+
+    app.controller("formController", function($scope){
+
+        $scope.submitForm = function(isValid){
+            if(isValid){
+                alert("Form submitted successfully!");
+            } else {
+                alert("Please fill all required fields correctly!");
+            }
+        };
+
+    });
+</script>
+
+</body>
+</html>
+prac2-AngularJS Routing / Single Page Application
+
+<!DOCTYPE html>
+<html ng-app="mainApp">
+
+<head>
+    <title>AngularJS Routing - SPA</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .nav {
+            margin-bottom: 15px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: white;
+            background-color: #007BFF;
+            padding: 8px 12px;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        .nav a:hover {
+            background-color: #0056b3;
+        }
+
+        .view-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ccc;
+            min-height: 100px;
+        }
+
+        .view-box h3 {
+            margin-top: 0;
+        }
+
+        .view-box p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>AngularJS Routing (SPA)</h2>
+
+    <div class="nav">
+        <a href="#!/addStudent">Add Student</a>
+        <a href="#!/viewStudents">View Students</a>
+    </div>
+
+    <div class="view-box" ng-view></div>
+
+    <!-- Templates -->
+    <script type="text/ng-template" id="addStudent.html">
+        <h3>Add Student</h3>
+        <p>Here you can add student details like Name and Roll Number.</p>
+    </script>
+
+    <script type="text/ng-template" id="viewStudents.html">
+        <h3>View Students</h3>
+        <p>Here you can view all registered students.</p>
+    </script>
+
+</div>
+
+<script>
+    var app = angular.module("mainApp", ['ngRoute']);
+
+    app.config(function($routeProvider){
+        $routeProvider
+            .when('/addStudent',{
+                templateUrl: 'addStudent.html',
+                controller: 'AddStudentController'
+            })
+            .when('/viewStudents',{
+                templateUrl: 'viewStudents.html',
+                controller: 'ViewStudentsController'
+            })
+            .otherwise({
+                redirectTo: '/addStudent'
+            });
+    });
+
+    app.controller("AddStudentController", function($scope){
+        $scope.message = "Add Student Page";
+    });
+
+    app.controller("ViewStudentsController", function($scope){
+        $scope.message = "View Students Page";
+    });
+</script>
+
+</body>
+</html>
+Prac1-AngularJS Multiple Filters
+
+<!DOCTYPE html>
+<html ng-app="filterApp">
+
+<head>
+    <title>AngularJS All Filters Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        h1 {
+            text-align: center;
+            color: green;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #999;
+        }
+
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        li {
+            padding: 8px;
+            margin-bottom: 5px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+
+        p,
+        pre {
+            background-color: #fafafa;
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body ng-controller="filterController">
+
+    <div class="container">
+
+        <h1>AngularJS Filters Demonstration</h1>
+
+        <h2>Lowercase Filter</h2>
+        <input type="text" ng-model="lowerText" placeholder="Enter text">
+        <p>Output: {{ lowerText | lowercase }}</p>
+
+        <h2>Uppercase Filter</h2>
+        <input type="text" ng-model="upperText" placeholder="Enter text">
+        <p>Output: {{ upperText | uppercase }}</p>
+
+        <h2>Search & OrderBy Filter</h2>
+        <input type="text" ng-model="searchText" placeholder="Search fruit">
+
+        <select ng-model="sortColumn">
+            <option value="">Sort By</option>
+            <option value="name">Name</option>
+            <option value="price">Price</option>
+        </select>
+
+        <ul>
+            <li ng-repeat="fruit in fruits | filter:searchText | orderBy:sortColumn">
+                {{ fruit.name }} - {{ fruit.price | currency }}
+            </li>
+        </ul>
+
+        <h2>Currency Filter</h2>
+        <p>Price: {{ productPrice | currency }}</p>
+
+        <h2>Date Filter</h2>
+        <p>Full Date: {{ today | date:'fullDate' }}</p>
+        <p>Short Date: {{ today | date:'dd/MM/yyyy' }}</p>
+
+        <h2>JSON Filter</h2>
+        <pre>{{ product | json }}</pre>
+
+        <h2>LimitTo Filter</h2>
+        <input type="number" ng-model="limitValue">
+        <p>{{ message | limitTo:limitValue }}</p>
+
+        <h2>Number Filter</h2>
+        <p>Original Number: {{ bigNumber }}</p>
+        <p>Formatted Number: {{ bigNumber | number:2 }}</p>
+
+    </div>
+
+    <script>
+        var app = angular.module("filterApp", []);
+
+        app.controller("filterController", function ($scope) {
+            $scope.lowerText = "";
+            $scope.upperText = "";
+            $scope.productPrice = 2500;
+            $scope.today = new Date();
+            $scope.bigNumber = 12345.6789;
+            $scope.message = "Hello AngularJS Filters Example";
+            $scope.limitValue = 10;
+
+            $scope.product = {
+                name: "Laptop",
+                price: 50000,
+                brand: "Dell"
+            };
+
+            $scope.fruits = [
+                { name: "Apple", price: 1.2 },
+                { name: "Banana", price: 0.5 },
+                { name: "Cherry", price: 3 },
+                { name: "Date", price: 2.5 },
+                { name: "Mango", price: 1.8 }
+            ];
+        });
+    </script>
+
+</body>
+
+</html>

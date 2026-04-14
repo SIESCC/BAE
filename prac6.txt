@@ -1,0 +1,80 @@
+Prac 6 - Functional Component in React
+
+Code:-
+
+src/App.jsx
+mport "./App.css";
+import { useState } from "react";
+
+function Header() {
+  return <h1>Functional Component</h1>;
+}
+
+function Message({ text }) {
+  return <p>{text}</p>;
+}
+
+function Button({ handleClick }) {
+  return <button onClick={handleClick}>Click Me</button>;
+}
+
+function App() {
+  const [message, setMessage] = useState(
+    "This is created using a functional component in React."
+  );
+
+  const handleClick = () => {
+    setMessage("Button Clicked! 🎉");
+  };
+
+  return (
+    <div className="app">
+      <div className="card">
+        <Header />
+        <Message text={message} />
+        <Button handleClick={handleClick} />
+      </div>
+    </div>
+  );
+}
+
+export default App;
+=================================================================
+src/App.css
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
+  margin: auto;
+}
+
+button {
+  padding: 8px 12px;
+  margin-top: 10px;
+}
+
+
+=================================================================
+src/main.jsx
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./App.css";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
